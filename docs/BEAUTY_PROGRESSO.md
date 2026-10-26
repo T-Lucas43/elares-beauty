@@ -8,13 +8,13 @@ Agenda lista/dia/semana/mês; exclusão de conflitos no banco e reservas simult�
 
 Nome, textos, logo original Elares em violeta, ícones, PWA e cache próprio, temas claro/escuro, PDFs e TV Beauty; dados fictícios com seis serviços e três profissionais; duas demonstrações; módulos Clientes (histórico derivado dos atendimentos) e Relatórios em áreas próprias; configuração e cookies independentes; testes específicos Beauty.
 
-## Validação em andamento
+## Validação concluída nesta etapa
 
 - TypeScript: passou.
 - Build de produção local: passou, sem publicação.
-- 24 testes de domínio/integração adaptados: passaram no banco Beauty; 2 testes específicos de catálogo e cookies Beauty: passaram.
-- Conferência visual final desktop/mobile e exportações: em andamento.
-- PDF: primeira página renderizada e inspecionada; rodapé legado encontrado e corrigido; falta renderizar versão final e todas as páginas.
+- Suíte final: 26/26 testes passaram no servidor e banco Beauty, incluindo catálogo, cookies exclusivos, agenda concorrente, financeiro, lembretes e isolamento.
+- Edge headless: 36/36 verificações passaram (9 módulos, 1440/375 px, claro/escuro), sem overflow horizontal da página e sem erros JavaScript. As quatro visões de agenda foram exercitadas. Persistência do tema após recarregar, demonstração profissional mobile e bloqueio da TV para profissional comprovados. PDF e CSV retornaram sucesso.
+- PDF final: 10 páginas A4 renderizadas com Poppler e inspecionadas em mosaico; primeira página também inspecionada ampliada. Texto extraído com pypdf sem Navalha/Barber e com marca Beauty. TV inspecionada após carregar os dados do salão.
 
 ## Pendências e limites
 
@@ -24,6 +24,12 @@ Nome, textos, logo original Elares em violeta, ícones, PWA e cache próprio, te
 - Recuperação por email, backups externos e restauração operacional dependem de configuração própria e validação; não há credenciais externas reutilizadas.
 - Instalação inicial sofreu ENOSPC no C:. Tipos Next e atalhos npm foram reparados; os comandos finais de tipos, testes e build verificam os caminhos usados. Recomenda-se liberar espaço e executar npm ci novamente para instalação integral reproduzível. Não removemos dados de outros projetos.
 - Produção, hospedagem, domínios e deploy não executados.
+
+## Execução e evidências locais
+
+A compilação final passou com um worker após limpar somente o cache .next desta cópia, com o servidor parado. A aplicação permanece executando com npm run start em http://127.0.0.1:3018. Banco e volume Docker Beauty permanecem ativos.
+
+Script reproduzível: scripts/qa-beauty.mjs. Resultados e capturas em tmp/beauty-qa/results.json e PNG/PDF na mesma pasta, ignorados pelo Git. A cobertura visual automatizada não equivale a auditoria WCAG completa ou testes em celulares físicos. O disco C: apresentou falta de espaço e ainda precisa de espaço livre para futuras instalações e compilações.
 
 ## Modelo SaaS — contexto recebido, pendente de implementação
 
