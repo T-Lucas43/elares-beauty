@@ -13,17 +13,17 @@ jobs:
       postgres:
         image: postgres:17-alpine
         env:
-          POSTGRES_DB: barber
-          POSTGRES_USER: barber
-          POSTGRES_PASSWORD: barber_ci_only
+          POSTGRES_DB: beauty
+          POSTGRES_USER: beauty
+          POSTGRES_PASSWORD: beauty_ci_only
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
     env:
-      DATABASE_URL: postgres://barber:barber_ci_only@localhost:5432/barber
-      APP_URL: http://127.0.0.1:3000
-      BETTER_AUTH_URL: http://127.0.0.1:3000
-      APP_ORIGINS: http://127.0.0.1:3000
+      DATABASE_URL: postgres://beauty:beauty_ci_only@localhost:5432/beauty
+      APP_URL: http://127.0.0.1:3018
+      BETTER_AUTH_URL: http://127.0.0.1:3018
+      APP_ORIGINS: http://127.0.0.1:3018
       BETTER_AUTH_SECRET: ci-only-build-secret-not-used-in-production-2026
       INITIAL_LOCAL_PASSWORD: demo-local-2026
       DEMO_MODE: "true"
@@ -40,15 +40,15 @@ jobs:
       - run: npm run db:seed
       - name: Validar tipos e fluxos
         run: |
-          npm run dev > /tmp/barbearia.log 2>&1 &
+          npm run dev > /tmp/beauty.log 2>&1 &
           server=$!
           trap 'kill "$server" 2>/dev/null || true' EXIT
           ready=false
           for i in $(seq 1 90); do
-            if curl -fsS http://127.0.0.1:3000/api/health >/dev/null; then ready=true; break; fi
+            if curl -fsS http://127.0.0.1:3018/api/health >/dev/null; then ready=true; break; fi
             sleep 2
           done
-          if [ "$ready" != true ]; then cat /tmp/barbearia.log; exit 1; fi
+          if [ "$ready" != true ]; then cat /tmp/beauty.log; exit 1; fi
           npm run typecheck
           npm test
       - run: npm run build

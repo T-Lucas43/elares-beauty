@@ -3,10 +3,11 @@ import { betterAuth, type BetterAuthOptions } from "better-auth";
 import { db } from "./db";
 export const authOptions = {
   database: db,
+  advanced: { cookiePrefix: "elares-beauty" },
   secret: process.env.BETTER_AUTH_SECRET,
-  baseURL: process.env.BETTER_AUTH_URL || "http://127.0.0.1:3000",
+  baseURL: process.env.BETTER_AUTH_URL || "http://127.0.0.1:3018",
   trustedOrigins: (
-    process.env.APP_ORIGINS || "http://127.0.0.1:3000,http://localhost:3000"
+    process.env.APP_ORIGINS || "http://127.0.0.1:3018,http://localhost:3018"
   )
     .split(",")
     .map((s) => s.trim()),

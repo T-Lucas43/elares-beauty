@@ -48,7 +48,7 @@ export async function claimManualReminder(
   rejectCompleted = false,
 ) {
   if (s.role === "barber")
-    throw new HttpError("O envio é realizado pela equipe da barbearia.", 403);
+    throw new HttpError("O envio é realizado pela equipe do salão.", 403);
   await c.query(
     "INSERT INTO manual_reminder_tasks(tenant_id,appointment_id,schedule_version) VALUES($1,$2,$3) ON CONFLICT(appointment_id,schedule_version) DO NOTHING",
     [s.tenant_id, appointmentId, version],

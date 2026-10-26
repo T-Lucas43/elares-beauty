@@ -207,7 +207,7 @@ export default function FinancePanel({
           </section>
           <section className="stat-card">
             <div>
-              Parte dos barbeiros e extras
+              Parte dos profissionais e extras
               <Receipt size={18} />
             </div>
             <strong>{money(report.commissions + report.tipsReleased)}</strong>
@@ -246,11 +246,11 @@ export default function FinancePanel({
       {report && owner && (
         <section className="panel split-period">
           <div>
-            <span>Parte dos barbeiros liberada no período</span>
+            <span>Parte dos profissionais liberada no período</span>
             <strong>{money(report.commissions)}</strong>
           </div>
           <div>
-            <span>Parte da barbearia no período, antes de despesas</span>
+            <span>Parte do salão no período, antes de despesas</span>
             <strong>{money(report.shopShare)}</strong>
           </div>
           <small>
@@ -279,11 +279,11 @@ export default function FinancePanel({
                 </h3>
                 <dl>
                   <div>
-                    <dt>Parte do barbeiro gerada</dt>
+                    <dt>Parte do profissional gerada</dt>
                     <dd>{money(b.generated)}</dd>
                   </div>
                   <div>
-                    <dt>Parte do barbeiro liberada</dt>
+                    <dt>Parte do profissional liberada</dt>
                     <dd>{money(b.released)}</dd>
                   </div>
                   <div>
@@ -325,8 +325,8 @@ export default function FinancePanel({
                 onChange={(e) => setAction(e.target.value)}
               >
                 <option value="expense">Despesa paga</option>
-                <option value="payout">Repasse ao barbeiro</option>
-                <option value="advance">Adiantamento ao barbeiro</option>
+                <option value="payout">Repasse ao profissional</option>
+                <option value="advance">Adiantamento ao profissional</option>
               </select>
             </label>
             <form

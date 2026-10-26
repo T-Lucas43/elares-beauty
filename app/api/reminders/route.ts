@@ -70,12 +70,12 @@ export async function POST(request: Request) {
       .parse(await request.json());
     if (s.role === "barber" && input.action !== "request")
       throw new HttpError(
-        "O envio é realizado pelo gestor ou pela recepção no WhatsApp da barbearia.",
+        "O envio é realizado pelo gestor ou pela recepção no WhatsApp do salão.",
         403,
       );
     if (input.action === "done" && !input.confirmed)
       throw new HttpError(
-        "Confirme que você enviou a mensagem pelo WhatsApp da barbearia.",
+        "Confirme que você enviou a mensagem pelo WhatsApp do salão.",
       );
     const result = await transaction(async (c) => {
       await c.query("SELECT set_config('app.user_id',$1,true)", [s.user_id]);

@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     ).rows[0];
     if (!device)
       throw new HttpError("Acesso da TV inválido, expirado ou revogado.", 401);
-    (await cookies()).set("navalha_tv", token, {
+    (await cookies()).set("elares_beauty_tv", token, {
       httpOnly: true,
       sameSite: "lax",
       path: "/api/tv",

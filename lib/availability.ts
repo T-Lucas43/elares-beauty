@@ -154,7 +154,7 @@ export async function checkAvailability(
   const settings = (
     await c.query("SELECT timezone FROM tenants WHERE id=$1", [tenant])
   ).rows[0];
-  if (!settings) throw new HttpError("Barbearia não encontrada.");
+  if (!settings) throw new HttpError("Salão não encontrado.");
   const starts = instant(date, hour, settings.timezone);
   const ends = new Date(+starts + duration * 60000);
   const minute = minuteOf(hour);

@@ -84,7 +84,7 @@ export default function ManualRemindersPanel({ data }: { data: Data }) {
         setConfirmations((c) => ({ ...c, [a.id]: false }));
       setNotice(
         action === "request"
-          ? "Solicitação enviada à central da barbearia."
+          ? "Solicitação enviada à central do salão."
           : action === "done"
             ? "Envio informado pela equipe. A entrega não é verificada pelo sistema."
             : action === "reopen"
@@ -115,8 +115,8 @@ export default function ManualRemindersPanel({ data }: { data: Data }) {
           </h2>
           <p>
             {canSend
-              ? "Organize os pedidos da equipe e envie pelo WhatsApp da barbearia."
-              : "Solicite o lembrete. O gestor ou a recepção envia pelo número da barbearia."}
+              ? "Organize os pedidos da equipe e envie pelo WhatsApp do salão."
+              : "Solicite o lembrete. O gestor ou a recepção envia pelo número do salão."}
           </p>
         </div>
         <span className="pill reminder-due">
@@ -128,12 +128,12 @@ export default function ManualRemindersPanel({ data }: { data: Data }) {
         <summary>
           <Phone size={18} />
           <strong>
-            WhatsApp da barbearia {shopPhone && <span>· {shopPhone}</span>}
+            WhatsApp do salão {shopPhone && <span>· {shopPhone}</span>}
           </strong>
         </summary>
         <p>
           {canSend
-            ? "Use um dispositivo conectado à conta da barbearia. O atalho abre a conta de WhatsApp que estiver conectada neste aparelho; confira antes de enviar."
+            ? "Use um dispositivo conectado à conta do salão. O atalho abre a conta de WhatsApp que estiver conectada neste aparelho; confira antes de enviar."
             : "Você não precisa usar o seu WhatsApp pessoal. Suas solicitações aparecem na central do gestor e da recepção."}
         </p>
       </details>
@@ -341,7 +341,7 @@ export default function ManualRemindersPanel({ data }: { data: Data }) {
                             />
                             <button className="primary" type="submit">
                               <MessageCircle size={17} />
-                              Abrir WhatsApp da barbearia{" "}
+                              Abrir WhatsApp do salão{" "}
                               <ExternalLink size={14} />
                             </button>
                           </form>
@@ -362,7 +362,7 @@ export default function ManualRemindersPanel({ data }: { data: Data }) {
                                 }))
                               }
                             />
-                            Já enviei esta mensagem pelo WhatsApp da barbearia.
+                            Já enviei esta mensagem pelo WhatsApp do salão.
                           </label>
                           <button
                             className="secondary"

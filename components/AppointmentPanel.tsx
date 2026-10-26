@@ -147,13 +147,13 @@ export default function AppointmentPanel({
             </div>
             {role !== "receptionist" && (
               <div>
-                <dt>Parte do barbeiro neste serviço</dt>
+                <dt>Parte do profissional neste serviço</dt>
                 <dd>{money(a.commission)}</dd>
               </div>
             )}
             {role !== "receptionist" && (
               <div>
-                <dt>Parte da barbearia (antes de despesas)</dt>
+                <dt>Parte do salão (antes de despesas)</dt>
                 <dd>{money(a.price - a.commission)}</dd>
               </div>
             )}
@@ -204,7 +204,7 @@ export default function AppointmentPanel({
               </button>
               <p className="form-note">
                 A conclusão não cobra o cliente automaticamente. Registre os
-                pagamentos abaixo; a parte do barbeiro fica disponível
+                pagamentos abaixo; a parte do profissional fica disponível
                 proporcionalmente ao recebido.
               </p>
             </div>
@@ -440,8 +440,8 @@ export default function AppointmentPanel({
               </label>
               <p className="form-note">
                 O sistema registra o estorno; a devolução ao cliente deve ser
-                feita pela barbearia. Valores já repassados geram ajuste no
-                saldo do barbeiro.
+                feita pelo salão. Valores já repassados geram ajuste no
+                saldo do profissional.
               </p>
               <button className="secondary danger" disabled={readOnly || busy}>
                 Registrar estorno

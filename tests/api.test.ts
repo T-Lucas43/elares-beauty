@@ -1,7 +1,7 @@
 import { test, after } from "node:test";
 import assert from "node:assert/strict";
 import { db } from "../lib/db";
-const base = "http://127.0.0.1:3000";
+const base = "http://127.0.0.1:3018";
 async function post(path: string, body: object, cookie?: string) {
   return fetch(base + path, {
     method: "POST",
@@ -17,11 +17,11 @@ async function login(profile: string) {
   const r = await post("/api/session", {
     email:
       profile === "owner"
-        ? "dono@navalha.local"
+        ? "dono@beauty.local"
         : profile === "receptionist"
-          ? "recepcao@navalha.local"
-          : "rafael@navalha.local",
-    password: "demo-local-2026",
+          ? "recepcao@beauty.local"
+          : "rafael@beauty.local",
+    password: process.env.INITIAL_LOCAL_PASSWORD || "demo-local-2026",
   });
   assert.equal(r.status, 200);
   return r.headers.get("set-cookie")!.split(";")[0];
@@ -109,7 +109,7 @@ test("rotas privadas exigem sessão e rejeitam origem externa", async () => {
   });
   assert.equal(r.status, 403);
 });
-test("barbeiro só recebe agenda própria e não registra despesas", async () => {
+test("profissional só recebe agenda própria e não registra despesas", async () => {
   const cookie = await login("rafa");
   const r = await fetch(base + "/api/data", { headers: { Cookie: cookie } });
   const d = await r.json();

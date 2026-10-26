@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
-  experimental: { cpus: 2 },
+  experimental: { cpus: 1 },
   poweredByHeader: false,
   serverExternalPackages: ["pdfkit"],
   devIndicators: false,

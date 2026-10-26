@@ -15,20 +15,20 @@ export async function setupAuth() {
   await migration.runMigrations();
   for (const account of [
     {
-      email: "dono@navalha.local",
+      email: "dono@beauty.local",
       name: "Proprietário",
       role: "owner",
       professional: null,
     },
     {
-      email: "recepcao@navalha.local",
+      email: "recepcao@beauty.local",
       name: "Recepção",
       role: "receptionist",
       professional: null,
     },
     {
-      email: "rafael@navalha.local",
-      name: "Rafael Costa",
+      email: "rafael@beauty.local",
+      name: "Marina Costa",
       role: "barber",
       professional: "rafa",
     },
@@ -53,14 +53,14 @@ export async function setupAuth() {
   if (process.env.DEMO_MODE === "true") {
     for (const account of [
       {
-        email: "demo@navalha.local",
-        name: "Rafael · Gestor e barbeiro",
+        email: "demo@beauty.local",
+        name: "Marina · Gestor e profissional",
         role: "owner",
         professional: "rafa",
       },
       {
-        email: "profissional@navalha.local",
-        name: "Leonardo · Profissional",
+        email: "profissional@beauty.local",
+        name: "Luiza · Profissional",
         role: "barber",
         professional: "leo",
       },
@@ -72,7 +72,7 @@ export async function setupAuth() {
       if (!u)
         u = (
           await auth.api.signUpEmail({
-            body: { name: account.name, email, password: "DemoNavalha2026!" },
+            body: { name: account.name, email, password: "DemoBeauty2026!" },
           })
         ).user;
       await db.query(

@@ -41,7 +41,7 @@ if (mode === "create") {
   const iv = randomBytes(12);
   const cipher = createCipheriv("aes-256-gcm", key, iv);
   const encrypted = Buffer.concat([cipher.update(dump), cipher.final()]);
-  const name = `barbearia-${new Date().toISOString().replace(/[:.]/g, "-")}.backup.enc`;
+  const name = `salão-${new Date().toISOString().replace(/[:.]/g, "-")}.backup.enc`;
   const path = resolve(root, "backups", name);
   await writeFile(
     path,

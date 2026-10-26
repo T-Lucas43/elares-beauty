@@ -6,7 +6,7 @@ import { localDay } from "@/lib/domain";
 import { HttpError, errorResponse } from "@/lib/http";
 export async function GET() {
   try {
-    const token = (await cookies()).get("navalha_tv")?.value;
+    const token = (await cookies()).get("elares_beauty_tv")?.value;
     let tenant: string;
     let mode: "owner" | "device";
     if (token) {

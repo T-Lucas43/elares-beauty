@@ -5,10 +5,10 @@ import { db, transaction } from "../lib/db";
 import { auth } from "../lib/auth-engine";
 import { localDay } from "../lib/domain";
 import { addDays } from "../lib/calendar";
-const base = "http://127.0.0.1:3000";
+const base = "http://127.0.0.1:3018";
 const tenant = "qa-" + randomUUID();
 const slug = tenant;
-const email = tenant + "@navalha.local";
+const email = tenant + "@beauty.local";
 const password = "Teste-local-2026!";
 let cookie = "";
 let pro = "";
@@ -56,7 +56,7 @@ async function login(mail: string) {
 before(async () => {
   await db.query("INSERT INTO tenants(id,name,slug) VALUES ($1,$2,$3)", [
     tenant,
-    "Barbearia de teste isolada",
+    "Salão de teste isolada",
     slug,
   ]);
   const u = await auth.api.signUpEmail({
@@ -70,7 +70,7 @@ before(async () => {
   pro = (
     await ok("/api/settings", {
       action: "professional",
-      name: "Barbeiro QA",
+      name: "Profissional QA",
       specialty: "Cortes",
       color: "#aabbcc",
       commissionBps: 6000,
@@ -437,7 +437,7 @@ test("jornada, bloqueio, remarcação atômica e gestão pelo link pessoal", asy
     0,
   );
 });
-test("corte avulso mantém histórico, divisão, recebimento idempotente e limites do profissional", async () => {
+test("atendimento avulso mantém histórico, divisão, recebimento idempotente e limites do profissional", async () => {
   const p = (
     await ok("/api/settings", {
       action: "professional",
@@ -946,7 +946,7 @@ test("lembretes manuais usam agenda atual e isolam telefone por profissional", a
   );
 });
 
-test("perfis individuais, isolamento entre barbearias e TV revogável", async () => {
+test("perfis individuais, isolamento entre salões de beleza e TV revogável", async () => {
   const accounts = [
     {
       name: "Recepção QA",
@@ -955,8 +955,8 @@ test("perfis individuais, isolamento entre barbearias e TV revogável", async ()
       professionalId: null,
     },
     {
-      name: "Barbeiro QA",
-      email: "barbeiro-" + email,
+      name: "Profissional QA",
+      email: "profissional-" + email,
       role: "barber",
       professionalId: pro,
     },
@@ -1042,7 +1042,7 @@ test("perfis individuais, isolamento entre barbearias e TV revogável", async ()
     .join("; ");
   const tv = await get("/api/tv", tvCookie);
   assert.equal(tv.mode, "device");
-  assert.equal(tv.tenant.name, "Barbearia de teste isolada");
+  assert.equal(tv.tenant.name, "Salão de teste isolada");
   assert.equal(
     (await fetch(base + "/api/data", { headers: { Cookie: tvCookie } })).status,
     401,

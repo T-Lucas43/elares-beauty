@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { professionalQueue } from "../lib/tv";
-test("TV mantém atendimentos e próximos separados por barbeiro", () => {
+test("TV mantém atendimentos e próximos separados por profissional", () => {
   const rows = [
     {
       id: "1",

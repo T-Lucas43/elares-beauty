@@ -73,7 +73,7 @@ type Config = {
   self: string;
 };
 const sections = [
-  { id: "shop", label: "Barbearia", icon: Building2 },
+  { id: "shop", label: "Salão", icon: Building2 },
   { id: "pros", label: "Profissionais", icon: Users },
   { id: "services", label: "Serviços", icon: Scissors },
   { id: "schedule", label: "Jornadas e folgas", icon: CalendarDays },
@@ -273,7 +273,7 @@ export default function SettingsPanel({
               reminderMinutes: num(f, "remind"),
             }))}
           >
-            <h2>Sua barbearia</h2>
+            <h2>Suo salão</h2>
             <p className="muted">Identidade pública e regras de atendimento.</p>
             <div className="form-grid">
               <Field
@@ -294,7 +294,7 @@ export default function SettingsPanel({
                 value={data.tenant.address}
               />
               <Field
-                label="WhatsApp da barbearia (com DDD)"
+                label="WhatsApp do salão (com DDD)"
                 name="phone"
                 value={data.tenant.phone}
               />
@@ -321,7 +321,7 @@ export default function SettingsPanel({
             </p>
             <button className="primary" disabled={readOnly || busy}>
               <Save size={16} />
-              Salvar barbearia
+              Salvar salão
             </button>
           </form>
         )}
@@ -388,13 +388,13 @@ export default function SettingsPanel({
                     onChange={(e) => setSplitModel(e.target.value)}
                   >
                     <option value="percent">
-                      Percentual contratado do barbeiro
+                      Percentual contratado do profissional
                     </option>
                     <option value="fixed">Valor fixo por serviço</option>
                   </select>
                 </label>
                 <label className="field">
-                  Barbeiro (%)
+                  Profissional (%)
                   <input
                     name="commission"
                     value={percentage}
@@ -408,16 +408,16 @@ export default function SettingsPanel({
                 </label>
                 {splitModel === "percent" && (
                   <label className="field">
-                    Barbearia (%)
+                    Salão (%)
                     <input
                       value={Math.round((100 - percentage) * 100) / 100}
                       readOnly
-                      aria-label="Percentual que fica para a barbearia"
+                      aria-label="Percentual que fica para o salão"
                     />
                   </label>
                 )}
                 <Field
-                  label="Parte fixa do barbeiro (R$) — usada só no modelo fixo"
+                  label="Parte fixa do profissional (R$) — usada só no modelo fixo"
                   name="fixed"
                   value={(pro?.commission_fixed || 0) / 100}
                   type="number"
@@ -429,16 +429,16 @@ export default function SettingsPanel({
                 <div className="split-preview">
                   <strong>Exemplo em um corte de R$ 50,00</strong>
                   <span>
-                    Barbeiro: {money(Math.round((5000 * percentage) / 100))} (
+                    Profissional: {money(Math.round((5000 * percentage) / 100))} (
                     {percentage}%)
                   </span>
                   <span>
-                    Barbearia:{" "}
+                    Salão:{" "}
                     {money(5000 - Math.round((5000 * percentage) / 100))} (
                     {Math.round((100 - percentage) * 100) / 100}%)
                   </span>
                   <small>
-                    A parte da barbearia ainda está sujeita às despesas e taxas.
+                    A parte do salão ainda está sujeita às despesas e taxas.
                     Gorjetas são extras opcionais separados.
                   </small>
                 </div>
@@ -535,7 +535,7 @@ export default function SettingsPanel({
                     required
                   />
                   <Field
-                    label="Parte do barbeiro no serviço (%) — vazio usa profissional"
+                    label="Parte do profissional no serviço (%) — vazio usa profissional"
                     name="commission"
                     value={
                       service?.commission_bps == null
@@ -610,7 +610,7 @@ export default function SettingsPanel({
                   max={480}
                 />
                 <Field
-                  label="Parte do barbeiro no serviço (%)"
+                  label="Parte do profissional no serviço (%)"
                   name="commission"
                   type="number"
                   min={0}
@@ -837,9 +837,9 @@ export default function SettingsPanel({
           <>
             <h2>Contas e permissões</h2>
             <p className="muted">
-              Cada pessoa entra com seu email e senha. O barbeiro vê seu
+              Cada pessoa entra com seu email e senha. O profissional vê seu
               financeiro; a recepção opera agenda e caixa; o dono administra a
-              barbearia.
+              salão.
             </p>
             <div className="settings-split">
               <div className="settings-records">
@@ -898,11 +898,11 @@ export default function SettingsPanel({
                   <select name="role" defaultValue={user?.role || "barber"}>
                     <option value="owner">Proprietário</option>
                     <option value="receptionist">Recepção</option>
-                    <option value="barber">Barbeiro</option>
+                    <option value="barber">Profissional</option>
                   </select>
                 </label>
                 <label className="field">
-                  Profissional vinculado (obrigatório para barbeiro)
+                  Profissional vinculado (obrigatório para profissional)
                   <select
                     name="professionalId"
                     defaultValue={user?.professional_id || ""}
@@ -934,10 +934,10 @@ export default function SettingsPanel({
         )}
         {section === "whatsapp" && (
           <>
-            <h2>Um WhatsApp para a barbearia</h2>
+            <h2>Um WhatsApp para o salão</h2>
             <p className="muted">
               Os profissionais solicitam o lembrete. O gestor ou a recepção abre
-              a mensagem pronta e envia usando o WhatsApp da barbearia.
+              a mensagem pronta e envia usando o WhatsApp do salão.
             </p>
             <form
               key={"wa" + nonce}
@@ -952,7 +952,7 @@ export default function SettingsPanel({
             >
               <div className="form-grid">
                 <Field
-                  label="WhatsApp da barbearia (com DDD)"
+                  label="WhatsApp do salão (com DDD)"
                   name="phone"
                   value={data.tenant.phone}
                 />
@@ -966,7 +966,7 @@ export default function SettingsPanel({
                 />
               </div>
               <p className="form-note">
-                Conecte a conta da barbearia no WhatsApp deste dispositivo. O
+                Conecte a conta do salão no WhatsApp deste dispositivo. O
                 atalho não escolhe o número que envia: ele utiliza a conta
                 conectada. O envio depende de um toque em enviar no WhatsApp.
               </p>
@@ -980,11 +980,11 @@ export default function SettingsPanel({
                 <strong>1. O cliente agenda</strong> e autoriza o contato.
               </p>
               <p>
-                <strong>2. O barbeiro recebe o aviso</strong> e pode solicitar à
+                <strong>2. O profissional recebe o aviso</strong> e pode solicitar à
                 recepção.
               </p>
               <p>
-                <strong>3. A equipe envia</strong> pelo número da barbearia e
+                <strong>3. A equipe envia</strong> pelo número do salão e
                 informa o envio na central.
               </p>
             </div>

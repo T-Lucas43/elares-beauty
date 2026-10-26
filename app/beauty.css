@@ -1,0 +1,405 @@
+/* Fonte única dos tokens de identidade Beauty. Status mantêm significado semântico. */
+:root {
+  color-scheme: light;
+  --bg: #faf9fc;
+  --surface: #fff;
+  --ink: #25212e;
+  --muted: #655d72;
+  --line: #e5ddef;
+  --green: #7c3aed;
+  --gold: #7c3aed;
+  --solar: #7c3aed;
+  --solar-dark: #5b21b6;
+  --beauty-soft: #f3eeff;
+  --beauty-hero: #211432;
+  --beauty-on: #fff;
+  --beauty-accent: #6d28d9;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #171220;
+  --surface: #241d30;
+  --ink: #faf9fc;
+  --muted: #c1b7d0;
+  --line: #483957;
+  --green: #a78bfa;
+  --gold: #a78bfa;
+  --beauty-soft: #352644;
+  --beauty-accent: #c4a5fa;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+.primary,
+.sidebar nav button.active,
+.notification-dot {
+  background: #7c3aed;
+  color: #fff;
+}
+.primary:hover,
+.sidebar nav button.active:hover {
+  background: #6d28d9;
+  color: #fff;
+}
+.sidebar nav button.active svg,
+.sidebar nav button.active .count {
+  color: #fff;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--beauty-accent);
+  outline-offset: 3px;
+}
+.theme-control {
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  z-index: 200;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 4px 18px #0002;
+  font-size: 12px;
+}
+.app-footer {
+  padding-bottom: 65px;
+}
+.sidebar {
+  background: #211432;
+  color: #f3eeff;
+  overflow-y: auto;
+}
+.sidebar .workspace,
+.sidebar .help-card {
+  background: #30203f;
+  border-color: #513667;
+}
+.sidebar .workspace-icon,
+.sidebar .avatar {
+  background: #493060;
+  color: #e9d5ff;
+}
+.sidebar nav button:hover {
+  background: #38234d;
+}
+.login-story,
+.booking-story,
+.cut-focus-card.current {
+  background:
+    radial-gradient(ellipse at top right, #7c3aed40, transparent 65%), #211432;
+  color: #fff;
+}
+.login-story h1 em,
+.booking-story h1 span,
+.tv-heading h1 > span {
+  color: #c4a5fa;
+}
+.tv-page {
+  background: #171220;
+  color: #faf9fc;
+}
+.bottom-nav button.active {
+  background: var(--beauty-soft);
+  color: var(--beauty-accent);
+}
+.demo-banner,
+.demo-profile,
+.walk-in-badge,
+.avatar,
+.cut-countdown {
+  background: var(--beauty-soft);
+  color: var(--beauty-accent);
+  border-color: var(--line);
+}
+.text-button,
+.inline-link {
+  color: var(--beauty-accent);
+}
+.status.completed {
+  background: #dcfce7;
+  color: #166534;
+}
+.status.confirmed,
+.status.scheduled {
+  background: #fef3c7;
+  color: #854d0e;
+}
+.status.cancelled,
+.status.no_show,
+.error {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .login-box,
+:root[data-theme="dark"] .login-form,
+:root[data-theme="dark"] .topbar,
+:root[data-theme="dark"] .bottom-nav,
+:root[data-theme="dark"] .modal,
+:root[data-theme="dark"] .modal-card,
+:root[data-theme="dark"] .notification-center,
+:root[data-theme="dark"] .secondary,
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] .cut-focus-card.next,
+:root[data-theme="dark"] .cut-focus-card.quiet,
+:root[data-theme="dark"] .barber-summary > div {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+:root[data-theme="dark"]
+  :is(
+    h1,
+    h2,
+    h3,
+    strong,
+    label,
+    .panel-heading h2,
+    .whatsapp-workflow strong,
+    .cut-focus-card.quiet h2
+  ) {
+  color: var(--ink);
+}
+:root[data-theme="dark"]
+  :is(
+    .muted,
+    .eyebrow,
+    small,
+    .form-note,
+    .app-footer,
+    .whatsapp-desk-note p,
+    .whatsapp-workflow p,
+    .cut-focus-card p
+  ) {
+  color: var(--muted);
+}
+:root[data-theme="dark"]
+  :is(
+    .pill,
+    .notice-list-item,
+    .whatsapp-desk-note,
+    .whatsapp-workflow p,
+    .install-app-button,
+    .demo-profile,
+    .reminder-view-tabs button.active
+  ) {
+  background: var(--beauty-soft);
+  color: var(--ink);
+  border-color: var(--line);
+}
+:root[data-theme="dark"]
+  :is(
+    .table-row,
+    .service-card,
+    .professional-card,
+    .calendar-toolbar,
+    .calendar-day,
+    .calendar-grid,
+    .calendar-event,
+    .kpi,
+    .stat-card,
+    .balance-card
+  ) {
+  border-color: var(--line);
+}
+:root[data-theme="dark"]
+  :is(
+    .sidebar,
+    .login-story,
+    .booking-story,
+    .cut-focus-card.current,
+    .tv-page
+  ) {
+  --ink: #faf9fc;
+  --muted: #c4b5d5;
+}
+:root[data-theme="dark"] :is(.status.completed) {
+  background: #153c2b;
+  color: #bbf7d0;
+}
+:root[data-theme="dark"] :is(.status.confirmed, .status.scheduled) {
+  background: #49371a;
+  color: #fde68a;
+}
+:root[data-theme="dark"] :is(.status.cancelled, .status.no_show, .error) {
+  background: #4c1d25;
+  color: #fecaca;
+}
+@media (max-width: 760px) {
+  .theme-control {
+    bottom: 82px;
+    right: 12px;
+    padding: 10px;
+  }
+  .theme-control span {
+    display: none;
+  }
+  .sidebar .brand {
+    margin-bottom: 18px;
+  }
+  .sidebar nav {
+    gap: 2px;
+  }
+  .sidebar nav button {
+    min-height: 44px;
+  }
+  .sidebar-bottom {
+    padding-top: 15px;
+  }
+  .help-card {
+    display: none;
+  }
+}
+@media print {
+  .theme-control {
+    display: none;
+  }
+}
+
+.clients-panel {
+  padding: 24px;
+}
+.client-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+.client-card {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  background: var(--beauty-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.report-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 20px 0;
+}
+.sidebar nav {
+  gap: 2px;
+}
+.sidebar nav button {
+  height: 44px;
+}
+.sidebar .brand {
+  margin-bottom: 20px;
+}
+.sidebar .workspace {
+  margin-bottom: 16px;
+}
+
+.login-story p,
+.login-story .login-foot {
+  color: #d8c9ea;
+}
+.demo-profile small,
+.demo-note {
+  color: var(--muted);
+}
+.demo-note {
+  background: var(--beauty-soft);
+  border-color: var(--line);
+}
+.timeline-label,
+.timeline-name,
+.timeline-hours,
+.calendar-appointment,
+.month-day,
+.week-day,
+.view-switch {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.calendar-appointment:hover {
+  background: var(--beauty-soft);
+}
+.view-switch .selected {
+  background: #7c3aed;
+  color: #fff;
+}
+.stat-card.accent {
+  background: #6d28d9;
+  color: white;
+}
+.stat-card.accent strong,
+.stat-card.accent small {
+  color: white;
+}
+
+.stat-card {
+  background: var(--surface);
+  color: var(--ink);
+}
+.view-switch button.selected {
+  background: #7c3aed;
+  color: #fff;
+}
+.calendar-appointment > span:not(.status) {
+  color: var(--muted);
+}
+.sidebar .count {
+  background: #493060;
+  color: #f3eeff;
+}
+.sidebar nav button.active .count {
+  background: #ffffff20;
+  color: #fff;
+}
+.stat-card.accent > div,
+.stat-card.accent > div svg {
+  color: #f3eeff;
+}
+
+.link-card {
+  --ink: #fff;
+  --muted: #e9d5ff;
+  color: #fff;
+}
+.link-card h2 {
+  color: #fff;
+}
+.link-card .eyebrow,
+.link-card p {
+  color: #e9d5ff;
+}
+.link-card .copy-link {
+  color: #fff;
+}
+.stat-card.accent > small {
+  color: #f3eeff;
+}
+
+:root[data-theme="dark"] .elares-brand {
+  content: url("/brand/elares-beauty-light.svg");
+}
+html .theme-control {
+  background: #fff;
+  color: #25212e;
+  border-color: #e5ddef;
+}
+html[data-theme="dark"] .theme-control {
+  background: #241d30;
+  color: #faf9fc;
+  border-color: #483957;
+}
+
+.online-dot {
+  background: #16a34a;
+}

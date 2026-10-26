@@ -15,7 +15,7 @@ const task: NotificationData = {
   phone: "11999990000",
   customer: "Cliente de teste",
   service_name: "Corte",
-  professional_name: "Barbeiro QA",
+  professional_name: "Profissional QA",
   starts_at: "2026-11-01T12:00:00Z",
   manage_cipher: null,
   slug: "teste",

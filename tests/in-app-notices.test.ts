@@ -9,7 +9,7 @@ const appointment: NoticeAppointment = {
   id: "appointment-qa",
   schedule_version: 0,
   customer: "Cliente fictício",
-  professional_name: "Barbeiro QA",
+  professional_name: "Profissional QA",
   service_name: "Corte masculino",
   starts_at: new Date(now + 10 * 60000).toISOString(),
 };
@@ -52,7 +52,7 @@ test("profissional solicita lembrete e gestor recebe uma central agregada", () =
   const pro = buildInAppNotices([], [appointment], "barber", now);
   assert.equal(pro[0].kind, "reminder");
   assert.equal(pro[0].appointmentId, appointment.id);
-  assert.match(pro[0].message, /WhatsApp da barbearia/);
+  assert.match(pro[0].message, /WhatsApp do salão/);
   const owner = buildInAppNotices(
     [],
     [appointment, { ...appointment, id: "second" }],

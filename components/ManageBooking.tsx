@@ -198,7 +198,7 @@ export default function ManageBooking({ id }: { id: string }) {
             )}
             <a className="inline-link" href={"/agendar/" + a.slug}>
               <ArrowLeft size={16} />
-              Página da barbearia
+              Página do salão
             </a>
           </>
         )}

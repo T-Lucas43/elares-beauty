@@ -6,12 +6,14 @@ for (const size of [192, 512, 180])
     .resize(size, size)
     .png()
     .toFile(`public/icons/elares-${size}.png`);
-await sharp(await readFile("public/brand/elares-barber-dark.svg"))
+await sharp(await readFile("public/brand/elares-beauty-dark.svg"))
   .resize({ width: 620 })
   .png()
-  .toFile("public/brand/elares-barber-dark.png");
-console.log("Ícones e logotipo Elares Barber gerados a partir dos vetores.");
+  .toFile("public/brand/elares-beauty-dark.png");
+console.log("Ícones e logotipo Elares Beauty gerados a partir dos vetores.");
 await sharp(Buffer.from(icon.toString().replace('rx="108"', 'rx="0"')))
   .resize(512, 512)
   .png()
   .toFile("public/icons/elares-maskable-512.png");
+
+await sharp(await readFile('public/brand/elares-beauty-light.svg')).resize({width:620}).png().toFile('public/brand/elares-beauty-light.png');

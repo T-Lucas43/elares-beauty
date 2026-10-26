@@ -112,7 +112,7 @@ export default function WalkInForm({
   return (
     <div className="walk-in-form">
       <span className="eyebrow">ATENDIMENTO SEM AGENDAMENTO</span>
-      <h2>Registrar corte avulso</h2>
+      <h2>Registrar atendimento avulso</h2>
       <p className="muted">
         Para cortes já realizados. Se o cliente já estiver na agenda, finalize o
         atendimento por lá.
@@ -217,7 +217,7 @@ export default function WalkInForm({
             <details className="walk-in-extras">
               <summary>Gorjeta e taxa (opcional)</summary>
               <label className="field">
-                Gorjeta para o barbeiro (R$)
+                Gorjeta para o profissional (R$)
                 <input
                   name="tip"
                   type="number"
@@ -256,7 +256,7 @@ export default function WalkInForm({
           disabled={busy || loading || !selected}
         >
           <Check size={17} />
-          {busy ? "Registrando…" : "Registrar corte avulso"}
+          {busy ? "Registrando…" : "Registrar atendimento avulso"}
         </button>
       </form>
     </div>

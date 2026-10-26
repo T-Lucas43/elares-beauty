@@ -7,7 +7,7 @@ const login = await fetch(base + "/api/session", {
   method: "POST",
   headers: { Origin: base, "Content-Type": "application/json" },
   body: JSON.stringify({
-    email: "dono@navalha.local",
+    email: "dono@beauty.local",
     password: process.env.INITIAL_LOCAL_PASSWORD || "demo-local-2026",
   }),
 });
@@ -32,7 +32,7 @@ await writeFile(
 );
 const qa: PDFReport = {
   shop: {
-    name: "Barbearia QA - teste de paginação",
+    name: "Salão QA - teste de paginação",
     address: "Dados fictícios para validação visual",
   },
   role: "owner",

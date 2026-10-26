@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { test } from "node:test";
 import assert from "node:assert/strict";
-const base = "http://127.0.0.1:3000";
+const base = "http://127.0.0.1:3018";
 test(
   "demonstrações de gestor e profissional preservam credenciais e isolam dados",
   { skip: process.env.DEMO_MODE !== "true" },
@@ -10,8 +10,8 @@ test(
       method: "POST",
       headers: { Origin: base, "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "demo@navalha.local",
-        password: "DemoNavalha2026!",
+        email: "demo@beauty.local",
+        password: "DemoBeauty2026!",
       }),
     });
     assert.equal(login.status, 200);
@@ -46,7 +46,7 @@ test(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        currentPassword: "DemoNavalha2026!",
+        currentPassword: "DemoBeauty2026!",
         newPassword: "not-a-new-password",
       }),
     });
@@ -59,8 +59,8 @@ test(
       method: "POST",
       headers: { Origin: base, "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "profissional@navalha.local",
-        password: "DemoNavalha2026!",
+        email: "profissional@beauty.local",
+        password: "DemoBeauty2026!",
       }),
     });
     assert.equal(professionalLogin.status, 200);

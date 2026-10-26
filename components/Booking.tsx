@@ -35,7 +35,7 @@ type PublicData = {
 export default function Booking({
   internal = false,
   onDone,
-  slug = "studio-da-navalha",
+  slug = "elares-beauty",
   fixedProfessional,
 }: {
   internal?: boolean;
@@ -164,7 +164,7 @@ export default function Booking({
             <Scissors size={60} strokeWidth={1} />
           </div>
           <h1>
-            {data?.tenant.name || "Sua barbearia"}
+            {data?.tenant.name || "Suo salão"}
             <span>.</span>
           </h1>
           <p>
@@ -207,7 +207,7 @@ export default function Booking({
               </strong>
               <p>
                 Guarde o link abaixo para consultar, cancelar ou reagendar sua
-                reserva, respeitando a antecedência da barbearia.
+                reserva, respeitando a antecedência do salão.
               </p>
               <a className="primary" href={manageLink}>
                 <LinkIcon size={17} />
@@ -499,7 +499,7 @@ export default function Booking({
       {!internal && (
         <footer className="booking-footer">
           Agendamento simples. Cuidado de verdade.
-          <span>feito com Elares Barber</span>
+          <span>feito com Elares Beauty</span>
         </footer>
       )}
     </div>

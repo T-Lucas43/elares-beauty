@@ -4,14 +4,14 @@ import { availableSlots } from "@/lib/availability";
 export async function GET(request: Request) {
   try {
     const p = new URL(request.url).searchParams;
-    const slug = p.get("slug") || "studio-da-navalha";
+    const slug = p.get("slug") || "elares-beauty";
     const shop = (
       await db.query(
         "SELECT id,name,slug,address,phone,cancellation_minutes FROM tenants WHERE slug=$1",
         [slug],
       )
     ).rows[0];
-    if (!shop) throw new HttpError("Barbearia não encontrada.", 404);
+    if (!shop) throw new HttpError("Salão não encontrado.", 404);
     const date = p.get("date");
     if (date) dateSchema.parse(date);
     const professional = p.get("professionalId");

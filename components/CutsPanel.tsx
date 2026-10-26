@@ -97,7 +97,7 @@ export default function CutsPanel({
       await updateManualReminder("request", a.id, a.schedule_version || 0);
       setRequested((ids) => [...ids, a.id]);
       setNotice(
-        "A recepção foi avisada para enviar pelo WhatsApp da barbearia.",
+        "A recepção foi avisada para enviar pelo WhatsApp do salão.",
       );
     } catch (e) {
       setError((e as Error).message);
@@ -197,7 +197,7 @@ export default function CutsPanel({
             disabled={data.readOnly}
           >
             <Plus size={17} />
-            Registrar corte avulso
+            Registrar atendimento avulso
           </button>
         </div>
       </div>
@@ -263,7 +263,7 @@ export default function CutsPanel({
         </p>
       )}
       {loading ? (
-        <p className="empty">Carregando seus cortes…</p>
+        <p className="empty">Carregando seus atendimentos…</p>
       ) : (
         <>
           <div
@@ -276,7 +276,7 @@ export default function CutsPanel({
                 <CalendarDays size={27} />
                 <h2>Sua cadeira está livre.</h2>
                 <p>
-                  Agende um cliente ou registre um corte avulso já realizado.
+                  Agende um cliente ou registre um atendimento avulso já realizado.
                 </p>
               </div>
             )}
@@ -372,7 +372,7 @@ export default function CutsPanel({
             ))}
             {!done.length && (
               <p className="empty">
-                Os seus cortes concluídos e avulsos aparecerão aqui.
+                Os seus atendimentos concluídos e avulsos aparecerão aqui.
               </p>
             )}
           </section>

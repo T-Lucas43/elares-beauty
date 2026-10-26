@@ -60,7 +60,7 @@ export default function InstallAppButton() {
           <X size={20} />
         </button>
         <span className="eyebrow">NAVALHA NO SEU DIA A DIA</span>
-        <h2>Sua barbearia na tela inicial.</h2>
+        <h2>Suo salão na tela inicial.</h2>
         <p>
           Instale o aplicativo para abrir a agenda com um toque, sem precisar
           procurar a aba do navegador.
@@ -79,7 +79,7 @@ export default function InstallAppButton() {
           <ol>
             <li>Abra o sistema no Chrome ou Edge.</li>
             <li>
-              No menu do navegador, escolha “Instalar Elares Barber” ou
+              No menu do navegador, escolha “Instalar Elares Beauty” ou
               “Adicionar à tela inicial”.
             </li>
             <li>Confirme a instalação no seu aparelho.</li>

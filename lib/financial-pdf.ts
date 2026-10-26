@@ -1,4 +1,7 @@
 import PDFDocument from "pdfkit";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { beauty } from "./beauty";
 import { money } from "./domain";
 import { addDays } from "./calendar";
 type FinancialReport = {
@@ -53,6 +56,7 @@ export type PDFReport = {
   }[];
 };
 export async function financialPDF(input: PDFReport): Promise<Buffer> {
+  const logo = await readFile(join(process.cwd(), "public/brand/elares-beauty-light.png"));
   const doc = new PDFDocument({
     size: "A4",
     margin: 40,
@@ -60,8 +64,8 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
     info: {
       Title: `Relatório financeiro - ${input.shop.name}`,
       Author: input.shop.name,
-      Subject: "Gestão de barbearias",
-      Creator: "Elares Barber",
+      Subject: "Gestão de salões de beleza",
+      Creator: beauty.name,
     },
   });
   const chunks: Buffer[] = [];
@@ -74,8 +78,8 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
     H = doc.page.height,
     left = 40,
     width = W - 80;
-  const green = "#171B21",
-    gold = "#F06432",
+  const green = "#211432",
+    gold = beauty.colors.primary,
     ink = "#202630",
     muted = "#677589",
     line = "#E5E9EF";
@@ -103,22 +107,14 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
   }
   function header(first = false) {
     doc.rect(0, 0, W, first ? 140 : 66).fill(green);
-    text(
-      "Elares Barber",
-      left,
-      first ? 28 : 20,
-      { width: 180 },
-      first ? 23 : 18,
-      "#F3F4E7",
-      true,
-    );
+    doc.image(logo, left, first ? 22 : 12, { width: 140 });
     text(
       input.shop.name,
       W - 285,
       first ? 34 : 25,
       { width: 245, align: "right" },
       11,
-      "#D5DDC9",
+      "#E4D7F5",
       true,
     );
     if (first) {
@@ -134,12 +130,12 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
         true,
       );
       text(
-        `${labelDate(input.start)} a ${labelDate(addDays(input.end, -1))}  |  ${input.role === "barber" ? "Visão individual" : "Visão geral da barbearia"}`,
+        `${labelDate(input.start)} a ${labelDate(addDays(input.end, -1))}  |  ${input.role === "barber" ? "Visão individual" : "Visão geral do salão"}`,
         left,
         111,
         { width: 480 },
         9,
-        "#BCCCB1",
+        "#D8C9EA",
       );
       y = 163;
     } else {
@@ -173,7 +169,7 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
     const heading = () => {
       const top = y;
       const height = 30;
-      doc.rect(left, top, width, height).fill("#EDF2E5");
+      doc.rect(left, top, width, height).fill("#F3EEFF");
       let x = left;
       headers.forEach((cell, i) => {
         text(
@@ -210,7 +206,7 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
         ),
       );
       if (ensure(height + 30)) heading();
-      if (index % 2 === 0) doc.rect(left, y, width, height).fill("#F8FAF4");
+      if (index % 2 === 0) doc.rect(left, y, width, height).fill("#FAF9FC");
       let x = left;
       row.forEach((cell, i) => {
         text(
@@ -241,7 +237,7 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
     input.role === "barber"
       ? [
           ["Serviços recebidos", fmt(r.received)],
-          ["Parte do barbeiro liberada no período", fmt(r.commissions)],
+          ["Parte do profissional liberada no período", fmt(r.commissions)],
           ["Gorjetas liberadas", fmt(r.tipsReleased)],
           ["Saldo acumulado a receber", fmt(balance)],
           [
@@ -253,7 +249,7 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
       : [
           ["Recebimentos líquidos", fmt(r.received + r.tips)],
           [
-            "Parte dos barbeiros e extras liberadas",
+            "Parte dos profissionais e extras liberadas",
             fmt(r.commissions + r.tipsReleased),
           ],
           ["Despesas pagas", fmt(r.expenses)],
@@ -269,15 +265,15 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
       cy = top + Math.floor(i / 3) * 75;
     doc
       .roundedRect(x, cy, cw, 65, 6)
-      .fillAndStroke(i === 4 ? "#EDF2E4" : "#F7F9F2", line);
+      .fillAndStroke(i === 4 ? "#F3EEFF" : "#FAF9FC", line);
     text(label, x + 11, cy + 12, { width: cw - 22 }, 7, muted);
     text(value, x + 11, cy + 31, { width: cw - 22 }, 17, ink, true);
   });
   y = top + 165;
   const explanation =
     input.role === "barber"
-      ? "O período considera as datas dos recebimentos e estornos. Seu saldo acumulado considera participações dos barbeiros liberadas, gorjetas, repasses e adiantamentos de todos os períodos."
-      : "Resultado operacional = recebimentos líquidos (incluindo gorjetas) - participações dos barbeiros e gorjetas liberadas - despesas pagas - taxas. Repasses e adiantamentos não são descontados novamente. Este indicador não substitui uma apuração contábil.";
+      ? "O período considera as datas dos recebimentos e estornos. Seu saldo acumulado considera participações dos profissionais liberadas, gorjetas, repasses e adiantamentos de todos os períodos."
+      : "Resultado operacional = recebimentos líquidos (incluindo gorjetas) - participações dos profissionais e gorjetas liberadas - despesas pagas - taxas. Repasses e adiantamentos não são descontados novamente. Este indicador não substitui uma apuração contábil.";
   ensure(80);
   doc.font("Helvetica").fontSize(8);
   const noteHeight =
@@ -288,15 +284,15 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
   y += noteHeight + 25;
   section(
     "Divisão contratual dos serviços",
-    "Saldos de serviços concluídos em todos os períodos. A parte da barbearia está antes de despesas e taxas.",
+    "Saldos de serviços concluídos em todos os períodos. A parte do salão está antes de despesas e taxas.",
   );
   if (input.balances.length)
     table(
       [
         "Profissional",
         "Total dos serviços",
-        "Parte do barbeiro",
-        "Parte da barbearia",
+        "Parte do profissional",
+        "Parte do salão",
       ],
       [200, 105, 105, width - 410],
       input.balances.map((b) => [
@@ -413,7 +409,7 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
   }
   section("Como ler este relatório");
   const guidance =
-    "A participação do barbeiro é gerada quando o atendimento é concluído e liberada proporcionalmente ao valor recebido pelo serviço. Gorjetas pertencem ao profissional. Um estorno após um repasse preserva o pagamento anterior e ajusta o saldo a compensar. O registro de um recebimento ou repasse não realiza uma transferência bancária automaticamente.";
+    "A participação do profissional é gerada quando o atendimento é concluído e liberada proporcionalmente ao valor recebido pelo serviço. Gorjetas pertencem ao profissional. Um estorno após um repasse preserva o pagamento anterior e ajusta o saldo a compensar. O registro de um recebimento ou repasse não realiza uma transferência bancária automaticamente.";
   ensure(90);
   text(guidance, left, y, { width }, 9, muted);
   y += doc.heightOfString(guidance, { width }) + 18;
@@ -432,7 +428,7 @@ export async function financialPDF(input: PDFReport): Promise<Buffer> {
       .strokeColor(line)
       .stroke();
     text(
-      `Navalha | Gerado por ${input.generatedBy}`,
+      `Elares Beauty | Gerado por ${input.generatedBy}`,
       left,
       H - 32,
       { width: 330, lineBreak: false },

@@ -266,7 +266,7 @@ export default function InAppNotifications({
               ? "PRÉVIA DO AVISO"
               : active.kind === "cut"
                 ? "PRÓXIMO ATENDIMENTO"
-                : "WHATSAPP DA BARBEARIA"}
+                : "WHATSAPP DO SALÃO"}
           </span>
           <h3>{active.title}</h3>
           <p>{active.message}</p>

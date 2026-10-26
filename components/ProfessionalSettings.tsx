@@ -139,7 +139,7 @@ export default function ProfessionalSettings({
           <p className="own-share">
             {p.commission_kind === "fixed"
               ? `${money(p.commission_fixed)} por serviço`
-              : `${p.commission_bps / 100}% para você · ${(10000 - p.commission_bps) / 100}% para a barbearia`}
+              : `${p.commission_bps / 100}% para você · ${(10000 - p.commission_bps) / 100}% para o salão`}
           </p>
           <p className="muted">
             Regras específicas por serviço podem se aplicar. A divisão e a

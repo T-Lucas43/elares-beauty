@@ -115,7 +115,7 @@ export default function TV() {
             <Brand light />
           </a>
           <span className="tv-shop">
-            {data?.tenant.name.toUpperCase() || "SUA BARBEARIA"}
+            {data?.tenant.name.toUpperCase() || "SEU SALÃO"}
           </span>
         </div>
         <div className="tv-clock">

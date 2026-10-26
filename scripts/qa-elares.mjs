@@ -13,18 +13,18 @@ const health = await (await get("/api/health")).json();
 assert.equal(health.status, "ready");
 assert.equal(health.release, sha);
 const html = await (await get("/")).text();
-assert.match(html, /Elares Barber/);
+assert.match(html, /Elares Beauty/);
 const sources = [...html.matchAll(/src="([^\"]+\.js)"/g)]
   .map((m) => m[1])
   .filter((s) => s.startsWith("/_next/"));
 const bundles = await Promise.all(
   sources.map(async (s) => (await get(s)).text()),
 );
-assert.ok(bundles.some((s) => s.includes("Gestor e barbeiro")));
+assert.ok(bundles.some((s) => s.includes("Gestor e profissional")));
 assert.ok(bundles.some((s) => s.includes("Central do WhatsApp")));
 assert.ok(bundles.some((s) => s.includes("Testar pop-up de exemplo")));
 const manifest = await (await get("/manifest.webmanifest")).json();
-assert.match(manifest.name, /Elares Barber/);
+assert.match(manifest.name, /Elares Beauty/);
 for (const asset of [
   "/brand/elares-barber-dark.svg",
   "/brand/elares-barber-light.svg",
@@ -36,13 +36,13 @@ for (const asset of [
 assert.equal((await get("/api/reminders")).status, 401);
 assert.equal((await get("/api/notices")).status, 401);
 for (const [email, role, id] of [
-  ["demo@navalha.local", "owner", "rafa"],
-  ["profissional@navalha.local", "barber", "leo"],
+  ["demo@beauty.local", "owner", "rafa"],
+  ["profissional@beauty.local", "barber", "leo"],
 ]) {
   const login = await fetch(base + "/api/session", {
     method: "POST",
     headers: { Origin: base, "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password: "DemoNavalha2026!" }),
+    body: JSON.stringify({ email, password: "DemoBeauty2026!" }),
   });
   assert.equal(login.status, 200);
   const cookie = login.headers

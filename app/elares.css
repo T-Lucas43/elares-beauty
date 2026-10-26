@@ -6,11 +6,11 @@
   --ink: #1b2028;
   --muted: #68717e;
   --green: #171b21;
-  --gold: #f06432;
+  --gold: #7C3AED;
   --line: #e7eaf0;
   --radius: 18px;
-  --solar: #f06432;
-  --solar-dark: #c8461d;
+  --solar: #7C3AED;
+  --solar-dark: #5B21B6;
 }
 body {
   font-family: "Space Grotesk", Arial, sans-serif;
@@ -41,7 +41,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #cc4c22;
+  outline: 3px solid #5B21B6;
   outline-offset: 3px;
 }
 .elares-brand {
@@ -78,11 +78,11 @@ textarea:focus-visible {
 }
 .sidebar .workspace small,
 .sidebar .sidebar-label {
-  color: #a6afba;
+  color: var(--muted);
 }
 .sidebar .workspace-icon {
   background: #34303a;
-  color: #ffb195;
+  color: #C4A5FA;
 }
 .sidebar nav button {
   color: #afb8c4;
@@ -95,13 +95,13 @@ textarea:focus-visible {
   color: #fff;
 }
 .sidebar nav button.active {
-  background: #f06432;
-  color: #12151a;
+  background: #7C3AED;
+  color: var(--ink);
   font-weight: 700;
   box-shadow: 0 5px 16px #0002;
 }
 .sidebar nav button.active svg {
-  color: #12151a;
+  color: var(--ink);
 }
 .sidebar .sidebar-promo {
   background: #20252d;
@@ -121,7 +121,7 @@ textarea:focus-visible {
 }
 .sidebar .avatar {
   background: #2d333e;
-  color: #ffc2ab;
+  color: #C4A5FA;
 }
 .sidebar .menu-close {
   color: #fff;
@@ -130,135 +130,135 @@ textarea:focus-visible {
   border-color: #ffffff18;
 }
 .primary {
-  background: #f06432;
-  color: #171b21;
+  background: #7C3AED;
+  color: var(--ink);
   font-weight: 700;
   border-radius: 10px;
-  box-shadow: 0 4px 10px #f0643214;
+  box-shadow: 0 4px 10px #7C3AED14;
 }
 .primary:hover {
-  background: #ff7847;
-  box-shadow: 0 5px 16px #f064322b;
+  background: #7C3AED;
+  box-shadow: 0 5px 16px #7C3AED2b;
 }
 .secondary {
-  background: #fff;
-  color: #303844;
+  background: var(--surface);
+  color: var(--ink);
   border: 1px solid #dfe4eb;
   border-radius: 10px;
   font-weight: 600;
 }
 .secondary:hover {
-  background: #f4f6f9;
-  border-color: #cdd4de;
+  background: var(--beauty-soft);
+  border-color: var(--line);
 }
 .text-button,
 .inline-link {
-  color: #a83a15;
+  color: var(--muted);
 }
 .eyebrow {
-  color: #737d8d;
+  color: var(--muted);
   letter-spacing: 0.14em;
   font-weight: 700;
 }
 .panel {
-  border-color: #e5e9ef;
+  border-color: var(--line);
   border-radius: 18px;
   box-shadow: 0 4px 20px #18213203;
 }
 .panel-heading h2 {
   font-size: 19px;
-  color: #202630;
+  color: var(--ink);
 }
 .pill {
   border: 1px solid #e7eaf0;
-  background: #f6f7fa;
-  color: #596477;
+  background: var(--surface);
+  color: var(--muted);
   gap: 6px;
   display: inline-flex;
   align-items: center;
 }
 .avatar {
-  background: #ffefe7;
-  color: #b0441c;
+  background: var(--beauty-soft);
+  color: var(--muted);
 }
 .bottom-nav {
   background: #fffffff5;
-  border-color: #e5e9ef;
+  border-color: var(--line);
   backdrop-filter: blur(16px);
 }
 .bottom-nav button {
-  color: #6e7887;
+  color: var(--muted);
 }
 .bottom-nav button.active {
-  color: #b5421d;
-  background: #fff0e8;
+  color: var(--muted);
+  background: var(--beauty-soft);
 }
 .demo-banner {
-  background: #fff5ee;
-  color: #8c4d2b;
+  background: var(--beauty-soft);
+  color: var(--muted);
   border: 1px solid #f3e2d6;
   border-radius: 10px;
 }
 .app-footer {
-  color: #78828f;
+  color: var(--muted);
 }
 .app-footer strong {
   font-weight: 600;
-  color: #4e5968;
+  color: var(--muted);
 }
 .login-story {
   background:
-    radial-gradient(ellipse at 90% 20%, #f0643219, transparent 55%), #11151b;
+    radial-gradient(ellipse at 90% 20%, #7C3AED19, transparent 55%), #11151b;
   color: #f3f0e9;
 }
 .login-story .brand .elares-brand {
   width: 300px;
 }
 .login-story .eyebrow.light {
-  color: #faab8c;
+  color: #C4A5FA;
 }
 .login-story h1 span {
-  color: #fc875c;
+  color: var(--muted);
 }
 .login-story .brand-icon {
   background: none;
 }
 .login-form {
-  background: #fff;
+  background: var(--surface);
 }
 .demo-profile {
   border-radius: 13px;
-  border-color: #e4e8ef;
-  background: #f9fafc;
+  border-color: var(--line);
+  background: var(--surface);
 }
 .demo-profile:hover {
-  border-color: #f06432;
-  background: #fff5ee;
+  border-color: var(--line);
+  background: var(--beauty-soft);
 }
 .demo-profile > svg {
-  color: #df592b;
+  color: var(--muted);
 }
 .install-app-button {
-  border-color: #e0e5ec;
-  background: #f8f9fb;
-  color: #344153;
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink);
 }
 .booking-header .brand .elares-brand {
   width: 190px;
 }
 .booking-story {
   background:
-    radial-gradient(ellipse at top right, #f0643226, transparent 65%), #15191f;
+    radial-gradient(ellipse at top right, #7C3AED26, transparent 65%), #15191f;
 }
 .booking-story h1 span {
-  color: #f68b64;
+  color: var(--muted);
 }
 .steps .active b {
   background: #171b21;
   color: #fff;
 }
 .status.confirmed {
-  color: #9b4e20;
+  color: #5B21B6;
   background: #fff0df;
 }
 .status.in_progress {
@@ -270,8 +270,8 @@ textarea:focus-visible {
   background: #eaf6ef;
 }
 .walk-in-badge {
-  background: #fff1e9;
-  color: #a7411a;
+  background: var(--beauty-soft);
+  color: var(--muted);
 }
 .toast {
   background: #202630;
@@ -298,12 +298,12 @@ textarea:focus-visible {
   align-items: center;
   gap: 12px;
   padding: 16px 18px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid #e5e9ef;
   border-radius: 14px;
 }
 .barber-summary svg {
-  color: #d95b2d;
+  color: var(--muted);
   flex-shrink: 0;
 }
 .barber-summary strong {
@@ -314,14 +314,14 @@ textarea:focus-visible {
 }
 .barber-summary small {
   display: block;
-  color: #687385;
+  color: var(--muted);
   font-size: 11px;
 }
 .cut-focus-grid {
   gap: 18px;
 }
 .cut-focus-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid #e3e8ef;
   border-radius: 18px;
   padding: 25px;
@@ -330,29 +330,29 @@ textarea:focus-visible {
 }
 .cut-focus-card.current {
   background:
-    radial-gradient(ellipse at 100% 0, #f0643221, transparent 65%), #171c24;
-  border-color: #171c24;
+    radial-gradient(ellipse at 100% 0, #7C3AED21, transparent 65%), #171c24;
+  border-color: var(--line);
   color: #fff;
 }
 .cut-focus-card.current h2 {
   color: #fff;
 }
 .cut-focus-card.current .eyebrow {
-  color: #ffb394;
+  color: #C4A5FA;
 }
 .cut-focus-card.current p,
 .cut-focus-card.current .cut-time {
   color: #b8c2d1;
 }
 .cut-focus-card.next {
-  border-top: 3px solid #f06432;
+  border-top: 3px solid #7C3AED;
 }
 .cut-focus-card.quiet {
-  background: #fff;
-  color: #727e8e;
+  background: var(--surface);
+  color: var(--muted);
 }
 .cut-focus-card.quiet h2 {
-  color: #303a48;
+  color: var(--ink);
   font-size: 23px;
 }
 .cut-focus-card h2 {
@@ -361,12 +361,12 @@ textarea:focus-visible {
   line-height: 1.2;
 }
 .cut-focus-card p {
-  color: #687589;
+  color: var(--muted);
   margin-top: 9px;
 }
 .cut-focus-card .cut-time {
   margin: 18px 0;
-  color: #5c687b;
+  color: var(--muted);
 }
 .cut-focus-actions {
   display: flex;
@@ -381,8 +381,8 @@ textarea:focus-visible {
   display: inline-flex;
   gap: 7px;
   align-items: center;
-  background: #fff0e7;
-  color: #a7441d;
+  background: var(--beauty-soft);
+  color: var(--muted);
   border-radius: 7px;
   padding: 5px 10px;
   font-weight: 600;
@@ -396,7 +396,7 @@ textarea:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 .cut-list-time small {
-  color: #8791a0;
+  color: var(--muted);
 }
 .cut-list-row.overdue {
   opacity: 0.8;
@@ -409,7 +409,7 @@ textarea:focus-visible {
   font-size: 12px;
 }
 
-/* Número único da barbearia, solicitações e confirmação manual. */
+/* Número único do salão, solicitações e confirmação manual. */
 .whatsapp-desk-note {
   display: flex;
   gap: 13px;
@@ -417,7 +417,7 @@ textarea:focus-visible {
   border: 1px solid #e4e9ef;
   border-radius: 12px;
   margin: 20px 0 15px;
-  background: #f8fafc;
+  background: var(--surface);
 }
 .whatsapp-desk-icon {
   display: flex;
@@ -426,8 +426,8 @@ textarea:focus-visible {
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  background: #e9f3ee;
-  color: #2d7654;
+  background: var(--beauty-soft);
+  color: var(--ink);
   border-radius: 10px;
 }
 .whatsapp-desk-note strong {
@@ -436,7 +436,7 @@ textarea:focus-visible {
 }
 .whatsapp-desk-note p {
   font-size: 12px;
-  color: #67758a;
+  color: var(--muted);
   line-height: 1.7;
   margin-top: 5px;
   max-width: 780px;
@@ -456,7 +456,7 @@ textarea:focus-visible {
   min-height: 42px;
   padding: 9px 13px;
   border-radius: 8px;
-  color: #657083;
+  color: var(--muted);
 }
 .reminder-view-tabs button.active {
   background: #171c24;
@@ -469,7 +469,7 @@ textarea:focus-visible {
   font-size: 11px;
 }
 .manual-reminder-card.requested {
-  border-left: 3px solid #f06432;
+  border-left: 3px solid #7C3AED;
 }
 .manual-reminder-actions {
   display: flex;
@@ -489,14 +489,14 @@ textarea:focus-visible {
 .manual-send-confirmation .check-field {
   flex: 1;
   min-width: 230px;
-  color: #657184;
+  color: var(--muted);
   font-size: 12px;
 }
 .reminder-requested-note {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #a74824;
+  color: var(--muted);
   font-size: 12px;
   margin: 10px 0;
 }
@@ -507,7 +507,7 @@ textarea:focus-visible {
   border-top: 1px solid #e7eaf0;
   margin-top: 18px;
   padding-top: 12px;
-  color: #748092;
+  color: var(--muted);
 }
 .reminder-unavailable summary {
   min-height: 44px;
@@ -533,8 +533,8 @@ textarea:focus-visible {
   min-width: 17px;
   height: 17px;
   border-radius: 10px;
-  background: #f06432;
-  color: #161a20;
+  background: #7C3AED;
+  color: var(--ink);
   display: grid;
   place-items: center;
   font-size: 10px;
@@ -551,8 +551,8 @@ textarea:focus-visible {
   overflow: auto;
   padding: 22px;
   border-radius: 18px;
-  background: #fff;
-  color: #273344;
+  background: var(--surface);
+  color: var(--ink);
   border: 1px solid #e5e9ef;
   box-shadow: 0 18px 65px #11182724;
 }
@@ -586,13 +586,13 @@ textarea:focus-visible {
   padding: 13px 10px;
   border-radius: 10px;
   text-align: left;
-  background: #f6f8fa;
+  background: var(--surface);
 }
 .notice-list-item:hover {
-  background: #fff2e9;
+  background: var(--beauty-soft);
 }
 .notice-list-item > svg {
-  color: #d15c30;
+  color: var(--muted);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -607,7 +607,7 @@ textarea:focus-visible {
 .notice-list-item small {
   display: block;
   line-height: 1.6;
-  color: #65758c;
+  color: var(--muted);
   font-size: 11px;
   margin-top: 4px;
   overflow-wrap: anywhere;
@@ -636,13 +636,13 @@ textarea:focus-visible {
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: #f0643226;
-  color: #ff9c75;
+  background: #7C3AED26;
+  color: #C4A5FA;
   border-radius: 11px;
   margin-bottom: 17px;
 }
 .appointment-notice .eyebrow {
-  color: #ffab89;
+  color: #C4A5FA;
   font-size: 9px;
 }
 .appointment-notice h3 {
@@ -807,7 +807,7 @@ textarea:focus-visible {
 }
 .sidebar nav button.active .count {
   background: #171b2120;
-  color: #171b21;
+  color: var(--ink);
 }
 .whatsapp-workflow {
   display: grid;
@@ -816,19 +816,19 @@ textarea:focus-visible {
 }
 .whatsapp-workflow p {
   padding: 13px 15px;
-  background: #f7f9fb;
+  background: var(--surface);
   border: 1px solid #e7ebf0;
   border-radius: 9px;
-  color: #687589;
+  color: var(--muted);
   font-size: 12px;
 }
 .whatsapp-workflow strong {
-  color: #263142;
+  color: var(--ink);
 }
 .barber-overdue summary {
   min-height: 44px;
   padding: 12px 0;
-  color: #88632d;
+  color: var(--muted);
   cursor: pointer;
   font-size: 12px;
 }
@@ -848,7 +848,7 @@ textarea:focus-visible {
   line-height: 1.7;
 }
 .barber-day-heading {
-  color: #758193;
+  color: var(--muted);
   font-size: 12px;
 }
 .cut-focus-grid.single {
@@ -884,7 +884,7 @@ textarea:focus-visible {
 .whatsapp-desk-note summary::after {
   content: "+";
   margin-left: auto;
-  color: #8a96a5;
+  color: var(--muted);
   font-size: 20px;
 }
 .whatsapp-desk-note[open] summary::after {
@@ -896,13 +896,13 @@ textarea:focus-visible {
 .login-story h1 em {
   font-family: inherit;
   font-style: normal;
-  color: #f68b64;
+  color: var(--muted);
 }
 .tv-page {
   background: #111720;
 }
 .tv-heading h1 > span {
-  color: #f78b64;
+  color: var(--muted);
 }
 .tv-shop,
 .tv-clock span,

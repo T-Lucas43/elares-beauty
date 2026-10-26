@@ -23,7 +23,7 @@ export async function registerWalkIn(
 ) {
   if (s.role === "barber" && input.professionalId !== s.professional_id)
     throw new HttpError(
-      "Você pode registrar apenas seus próprios cortes.",
+      "Você pode registrar apenas seus próprios atendimentos.",
       403,
     );
   await c.query(
@@ -60,7 +60,7 @@ export async function registerWalkIn(
       : commission(price, service.actual_bps);
   if (share > price)
     throw new HttpError(
-      "A participação fixa do barbeiro excede o valor do corte.",
+      "A participação fixa do profissional excede o valor do corte.",
     );
   if (!input.received && (input.tip > 0 || input.fee > 0))
     throw new HttpError(

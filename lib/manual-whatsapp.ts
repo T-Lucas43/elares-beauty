@@ -51,5 +51,5 @@ export function reminderMessage(
     hour: "2-digit",
     minute: "2-digit",
   }).format(date);
-  return `Olá, ${appointment.customer}! Passando para lembrar do seu agendamento na ${shop}.\n\n✂️ ${appointment.service_name}\n👤 Profissional: ${appointment.professional_name}\n📅 ${day} às ${hour}\n\nSe precisar remarcar ou cancelar, fale com a barbearia. Até lá!`;
+  return `Olá, ${appointment.customer}! Passando para lembrar do seu agendamento na ${shop}.\n\n✂️ ${appointment.service_name}\n👤 Profissional: ${appointment.professional_name}\n📅 ${day} às ${hour}\n\nSe precisar remarcar ou cancelar, fale com o salão. Até lá!`;
 }

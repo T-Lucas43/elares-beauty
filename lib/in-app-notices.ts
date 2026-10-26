@@ -46,7 +46,7 @@ export function buildInAppNotices(
         key: `wa:${a.id}:${a.schedule_version}`,
         kind: "reminder",
         title: "Lembrete do cliente pendente",
-        message: `${a.customer} · ${time(a.starts_at)}. Solicite o envio pelo WhatsApp da barbearia.`,
+        message: `${a.customer} · ${time(a.starts_at)}. Solicite o envio pelo WhatsApp do salão.`,
         appointmentId: a.id,
         version: a.schedule_version,
       });
@@ -64,7 +64,7 @@ export function buildInAppNotices(
       key: `central:${hash}`,
       kind: "central",
       title: "Central do WhatsApp",
-      message: `${reminders.length} ${reminders.length === 1 ? "lembrete aguarda" : "lembretes aguardam"} a equipe. Abra a central para enviar pelo número da barbearia.`,
+      message: `${reminders.length} ${reminders.length === 1 ? "lembrete aguarda" : "lembretes aguardam"} a equipe. Abra a central para enviar pelo número do salão.`,
     });
   }
   return notices;

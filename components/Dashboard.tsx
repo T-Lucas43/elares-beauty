@@ -37,6 +37,8 @@ import type { LucideIcon } from "lucide-react";
 import { money, localDay, time } from "@/lib/domain";
 import type { Data, Appointment } from "./types";
 import Booking from "./Booking";
+import ClientsPanel from "./ClientsPanel";
+import ReportsPanel from "./ReportsPanel";
 import Calendar from "./Calendar";
 import SettingsPanel from "./SettingsPanel";
 import AccountPanel from "./AccountPanel";
@@ -48,13 +50,16 @@ import WalkInForm from "./WalkInForm";
 import CutsPanel from "./CutsPanel";
 import ProfessionalSettings from "./ProfessionalSettings";
 import Brand from "./Brand";
+import { beauty } from "@/lib/beauty";
 import InAppNotifications from "./InAppNotifications";
 const tabs: { id: string; label: string; icon: LucideIcon }[] = [
   { id: "overview", label: "Visão geral", icon: LayoutDashboard },
-  { id: "cuts", label: "Cortes", icon: Scissors },
+  { id: "cuts", label: "Atendimentos", icon: Scissors },
   { id: "agenda", label: "Agenda", icon: CalendarDays },
   { id: "team", label: "Profissionais", icon: Users },
   { id: "services", label: "Serviços", icon: Scissors },
+  { id: "clients", label: "Clientes", icon: Users },
+  { id: "reports", label: "Relatórios", icon: Receipt },
   { id: "finance", label: "Financeiro", icon: Wallet },
   { id: "messages", label: "Lembretes", icon: MessageCircle },
   { id: "settings", label: "Configurações", icon: Settings },
@@ -70,7 +75,7 @@ const labels: Record<string, string> = {
 };
 const pageCopy: Record<string, [string, string]> = {
   cuts: [
-    "Seus cortes, no seu ritmo.",
+    "Seus atendimentos, no seu ritmo.",
     "Próximo atendimento, agendamentos e registros avulsos.",
   ],
   overview: [
@@ -82,7 +87,9 @@ const pageCopy: Record<string, [string, string]> = {
     "Talento que faz a diferença.",
     "Acompanhe sua equipe e a divisão dos serviços.",
   ],
-  services: ["Cuidado em cada detalhe.", "Serviços e preços da sua barbearia."],
+  services: ["Cuidado em cada detalhe.", "Serviços e preços do seu salão."],
+  clients: ["Relações que florescem.", "Conheça o histórico de atendimento dos seus clientes."],
+  reports: ["Seu salão em números.", "Relatórios com a identidade Elares Beauty."],
   finance: [
     "Cada valor, no seu lugar.",
     "Recebimentos, participação dos profissionais e despesas com clareza.",
@@ -93,7 +100,7 @@ const pageCopy: Record<string, [string, string]> = {
   ],
   settings: [
     "Do seu jeito.",
-    "Personalize a barbearia, a equipe e as regras do atendimento.",
+    "Personalize o salão, a equipe e as regras do atendimento.",
   ],
   account: ["Seu acesso, protegido.", "Gerencie sua senha individual."],
 };
@@ -238,9 +245,9 @@ export default function Dashboard() {
         body: JSON.stringify({
           email:
             profile === "barber"
-              ? "profissional@navalha.local"
-              : "demo@navalha.local",
-          password: "DemoNavalha2026!",
+              ? beauty.demo.professional
+              : beauty.demo.owner,
+          password: beauty.demo.password,
         }),
       });
       if (!r.ok) throw Error("Demonstração indisponível no momento.");
@@ -263,7 +270,7 @@ export default function Dashboard() {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(
-        `${location.origin}/agendar/${data?.tenant.slug || "studio-da-navalha"}`,
+        `${location.origin}/agendar/${data?.tenant.slug || "elares-beauty"}`,
       );
       setNotice("Link de agendamento copiado");
     } catch {
@@ -281,7 +288,7 @@ export default function Dashboard() {
           <h1>
             Seu talento
             <br />
-            faz o corte.
+            transforma.
             <br />
             <em>
               A gente cuida
@@ -292,17 +299,17 @@ export default function Dashboard() {
           <p>
             Agenda, equipe e financeiro.
             <br />
-            Tudo no ritmo da sua barbearia.
+            Tudo no ritmo do seu salão.
           </p>
           <span className="login-foot">
-            FEITO PARA A ROTINA REAL DA BARBEARIA
+            FEITO PARA A ROTINA REAL DO SALÃO
           </span>
         </div>
         <section className="login-box">
           <InstallAppButton />
-          <span className="eyebrow">BEM-VINDO AO ELARES BARBER</span>
+          <span className="eyebrow">BEM-VINDO AO ELARES BEAUTY</span>
           <h2>Seu dia começa aqui.</h2>
-          <p className="muted">Entre com sua conta da barbearia.</p>
+          <p className="muted">Entre com sua conta do salão.</p>
           <form onSubmit={enter}>
             <label className="field">
               Email
@@ -311,7 +318,7 @@ export default function Dashboard() {
                 type="email"
                 autoComplete="username"
                 required
-                placeholder="voce@barbearia.com"
+                placeholder="voce@salao.com"
               />
             </label>
             <label className="field">
@@ -344,8 +351,8 @@ export default function Dashboard() {
                 >
                   <Users size={21} />
                   <span>
-                    <strong>Gestor e barbeiro</strong>
-                    <small>Gestão da barbearia e seus próprios cortes</small>
+                    <strong>Gestor e profissional</strong>
+                    <small>Gestão do salão e seus próprios atendimentos</small>
                   </span>
                   <ArrowUpRight size={16} />
                 </button>
@@ -358,7 +365,7 @@ export default function Dashboard() {
                   <Scissors size={21} />
                   <span>
                     <strong>Profissional</strong>
-                    <small>Cortes, agenda e financeiro individuais</small>
+                    <small>Atendimentos, agenda e financeiro individuais</small>
                   </span>
                   <ArrowUpRight size={16} />
                 </button>
@@ -371,7 +378,7 @@ export default function Dashboard() {
           )}
           <a
             className="inline-link"
-            href={"/agendar/" + (data?.tenant.slug || "studio-da-navalha")}
+            href={"/agendar/" + (data?.tenant.slug || "elares-beauty")}
           >
             Ver página de agendamento
             <ArrowUpRight size={16} />
@@ -383,7 +390,7 @@ export default function Dashboard() {
     return (
       <main className="loading">
         <Scissors />
-        <p>{error || "Preparando sua barbearia…"}</p>
+        <p>{error || "Preparando suo salão…"}</p>
         {error && <button onClick={load}>Tentar novamente</button>}
       </main>
     );
@@ -444,7 +451,7 @@ export default function Dashboard() {
           <Brand light />
         </a>
         <div className="workspace">
-          <span className="workspace-icon">SN</span>
+          <span className="workspace-icon">EB</span>
           <div>
             <strong>{data.tenant.name}</strong>
             <small>Ambiente de demonstração</small>
@@ -459,6 +466,8 @@ export default function Dashboard() {
                     "cuts",
                     "agenda",
                     "finance",
+                    "clients",
+                    "reports",
                     "messages",
                     "settings",
                   ].includes(t.id)
@@ -524,7 +533,7 @@ export default function Dashboard() {
                   ? "Proprietário"
                   : data.role === "receptionist"
                     ? "Recepção"
-                    : "Barbeiro"}
+                    : "Profissional"}
               </small>
             </div>
             <span className="online-dot" />
@@ -607,7 +616,7 @@ export default function Dashboard() {
               <div className="page-actions">
                 <button
                   className="secondary"
-                  aria-label="Registrar corte avulso"
+                  aria-label="Registrar atendimento avulso"
                   disabled={data.readOnly}
                   onClick={() => setModal("walk_in")}
                 >
@@ -674,7 +683,7 @@ export default function Dashboard() {
               <Stat
                 label={
                   owner
-                    ? "Parte dos barbeiros no dia"
+                    ? "Parte dos profissionais no dia"
                     : "Minha parte dos serviços"
                 }
                 value={money(earned)}
@@ -855,7 +864,7 @@ export default function Dashboard() {
                     </div>
                     <a
                       href={
-                        "/agendar/" + (data?.tenant.slug || "studio-da-navalha")
+                        "/agendar/" + (data?.tenant.slug || "elares-beauty")
                       }
                       target="_blank"
                       className="light-button"
@@ -909,6 +918,8 @@ export default function Dashboard() {
               )}
             </div>
           )}
+          {tab === "clients" && <ClientsPanel />}
+          {tab === "reports" && <ReportsPanel />}
           {tab === "services" && (
             <div className="service-grid">
               {data.services.map((s, i) => (
@@ -983,7 +994,7 @@ export default function Dashboard() {
                           {p.commission_kind === "fixed"
                             ? money(p.commission_fixed || 0) + " por serviço"
                             : (p.commission_bps || 0) / 100 +
-                              "% para o barbeiro"}
+                              "% para o profissional"}
                         </span>
                       </div>
                       <h3>{p.name}</h3>
@@ -1057,13 +1068,13 @@ export default function Dashboard() {
           )}
           <footer className="app-footer">
             <span>
-              <strong>Elares Barber</strong>{" "}
+              <strong>Elares Beauty</strong>{" "}
               <small>Seu talento. Nossa tecnologia.</small>
             </span>
             <small>
               {process.env.NEXT_PUBLIC_DEMO_MODE === "true"
                 ? "Demonstração"
-                : "Elares Barber"}{" "}
+                : "Elares Beauty"}{" "}
               ·{" "}
               {data.whatsappEnabled
                 ? "WhatsApp habilitado"
@@ -1131,7 +1142,7 @@ export default function Dashboard() {
                 : modal === "booking"
                   ? "Novo agendamento"
                   : modal === "walk_in"
-                    ? "Registrar corte avulso"
+                    ? "Registrar atendimento avulso"
                     : modal === "expense"
                       ? "Nova despesa"
                       : "Registrar repasse"
@@ -1175,7 +1186,7 @@ export default function Dashboard() {
                   if (day === localDay()) void load();
                   else setDay(localDay());
                   setTab(data.role === "barber" ? "cuts" : "agenda");
-                  setNotice("Corte avulso registrado.");
+                  setNotice("Atendimento avulso registrado.");
                 }}
               />
             ) : detail ? (

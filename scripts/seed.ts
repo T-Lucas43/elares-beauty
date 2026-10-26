@@ -8,12 +8,12 @@ import {seedDemo} from './demo-seed';
 await migrate();
 await transaction(async (c) => {
   await c.query(
-    "INSERT INTO tenants VALUES ('demo','Studio da Navalha','studio-da-navalha') ON CONFLICT DO NOTHING",
+    "INSERT INTO tenants VALUES ('demo','Elares Beauty','elares-beauty') ON CONFLICT DO NOTHING",
   );
   for (const p of [
-    ["rafa", "Rafael Costa", "Cortes clássicos & degradê", "#d79e58", 4500],
-    ["bruno", "Bruno Almeida", "Barba & visagismo", "#899f8e", 5000],
-    ["leo", "Leonardo Santos", "Cortes modernos", "#9b8cbe", 4000],
+    ["rafa", "Marina Costa", "Corte, escova e coloração", "#7C3AED", 4500],
+    ["bruno", "Bianca Almeida", "Hidratação e cuidados capilares", "#6D28D9", 5000],
+    ["leo", "Luiza Santos", "Manicure e design de sobrancelhas", "#A855F7", 4000],
   ])
     await c.query(
       "INSERT INTO professionals(id,tenant_id,name,specialty,color,commission_bps) VALUES ($1,$2,$3,$4,$5,$6) ON CONFLICT DO NOTHING",
@@ -22,32 +22,34 @@ await transaction(async (c) => {
   for (const s of [
     [
       "corte",
-      "Corte masculino",
+      "Corte",
       "Seu estilo, com acabamento impecável.",
       6000,
       45,
     ],
     [
       "barba",
-      "Barba completa",
-      "Toalha quente e cuidado em cada detalhe.",
+      "Escova",
+      "Finalização e movimento para os cabelos.",
       4000,
       30,
     ],
     [
       "combo",
-      "Corte + barba",
+      "Hidratação",
       "A experiência completa para renovar o visual.",
       9000,
       75,
     ],
     [
       "acabamento",
-      "Acabamento",
+      "Sobrancelhas",
       "Os pequenos detalhes fazem a diferença.",
       2500,
       15,
     ],
+    ["coloracao", "Coloração", "Cor e cuidado profissional.", 18000, 90],
+    ["manicure", "Manicure", "Cuidado e esmaltação das unhas.", 3500, 45],
   ])
     await c.query(
       "INSERT INTO services(id,tenant_id,name,description,price,duration) VALUES ($1,$2,$3,$4,$5,$6) ON CONFLICT DO NOTHING",

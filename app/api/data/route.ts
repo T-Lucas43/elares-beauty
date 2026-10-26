@@ -140,7 +140,7 @@ const bookingSchema = z.object({
   quotedPrice: amountSchema.optional(),
   quotedDuration: z.number().int().positive().optional(),
   internal: z.boolean().default(false),
-  slug: z.string().default("studio-da-navalha"),
+  slug: z.string().default("elares-beauty"),
 });
 export async function POST(request: Request) {
   try {
@@ -176,7 +176,7 @@ export async function POST(request: Request) {
         ? { id: auth!.tenant_id }
         : (await db.query("SELECT id FROM tenants WHERE slug=$1", [b.slug]))
             .rows[0];
-      if (!shop) throw new HttpError("Barbearia não encontrada.", 404);
+      if (!shop) throw new HttpError("Salão não encontrado.", 404);
       if (
         b.internal &&
         auth?.role === "barber" &&

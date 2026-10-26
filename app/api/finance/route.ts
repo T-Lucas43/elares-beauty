@@ -93,7 +93,7 @@ export async function GET(request: Request) {
     });
     if (params.get("export") === "pdf") {
       if (s.role === "receptionist" || !result.report)
-        throw new HttpError("Exportação disponível para dono e barbeiro.", 403);
+        throw new HttpError("Exportação disponível para dono e profissional.", 403);
       const bytes = await financialPDF({
         ...result,
         report: result.report,
@@ -110,7 +110,7 @@ export async function GET(request: Request) {
     }
     if (params.get("export") === "csv") {
       if (s.role === "receptionist")
-        throw new HttpError("Exportação disponível para dono e barbeiro.", 403);
+        throw new HttpError("Exportação disponível para dono e profissional.", 403);
       const quote = (v: unknown) =>
         '"' +
         String(v ?? "")
