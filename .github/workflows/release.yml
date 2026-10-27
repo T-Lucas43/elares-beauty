@@ -52,3 +52,25 @@ jobs:
           npm run typecheck
           npm test
       - run: npm run build
+      - name: Preparar pacote Linux para Shard
+        run: |
+          RELEASE_SHA="$GITHUB_SHA" node scripts/package-release.mjs --shard-node
+          python - <<'PY'
+          import os
+          from zipfile import ZipFile, ZIP_DEFLATED
+          from pathlib import Path
+          root=Path('release-package')
+          with ZipFile('elares-beauty-linux.zip','w',ZIP_DEFLATED) as archive:
+              for folder,dirs,files in os.walk(root,followlinks=True):
+                  for name in files:
+                      path=Path(folder)/name
+                      archive.write(path,path.relative_to(root))
+          PY
+          python scripts/package-shard-node.py elares-beauty-linux.zip elares-beauty-node.zip
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: elares-beauty-shard
+          path: elares-beauty-node.zip
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error

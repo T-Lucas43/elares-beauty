@@ -12,6 +12,8 @@ FROM build AS package
 RUN apt-get update && apt-get install -y --no-install-recommends zip && rm -rf /var/lib/apt/lists/*
 RUN RELEASE_SHA="$RELEASE_SHA" node scripts/package-release.mjs
 RUN cd release-package && zip -qr /elares-beauty-shard.zip .
+FROM scratch AS artifact
+COPY --from=package /elares-beauty-shard.zip /elares-beauty-shard.zip
 FROM node:22-bookworm-slim
 WORKDIR /app
 ENV NODE_ENV=production PORT=3000 HOSTNAME=0.0.0.0 NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS=--max-old-space-size=256 DATABASE_POOL_SIZE=5
