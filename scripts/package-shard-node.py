@@ -45,10 +45,10 @@ import {spawnSync} from 'node:child_process';
 // Uploads merge files. Next's route-cache uses route identities across builds;
 // archive that generated cache when the compiled release changes.
 const release=JSON.parse(readFileSync('release.json','utf8')).sha;
-const stamp='.cache/navalha-release';
+const stamp='.cache/elares-beauty-release';
 if(!existsSync(stamp)||readFileSync(stamp,'utf8')!==release) {
-  mkdirSync('.cache/navalha-previous-caches',{recursive:true});
-  if(existsSync('build/server/route-cache'))renameSync('build/server/route-cache',`.cache/navalha-previous-caches/${Date.now()}-${release}`);
+  mkdirSync('.cache/elares-beauty-previous-caches',{recursive:true});
+  if(existsSync('build/server/route-cache'))renameSync('build/server/route-cache',`.cache/elares-beauty-previous-caches/${Date.now()}-${release}`);
   writeFileSync(stamp,release);
 }
 if (!existsSync('node_modules/next/package.json')) {
@@ -61,12 +61,27 @@ for(const [link,target] of Object.entries(links)) {
 }
 await import('./scripts/start.mjs');
 """)
-    output.writestr('next.config.mjs', "export default {distDir:'build',poweredByHeader:false,serverExternalPackages:['pdfkit']};\n")
+    output.writestr('next.config.mjs', """export default {
+  distDir:'build', poweredByHeader:false, serverExternalPackages:['pdfkit'],
+  async headers() { return [
+    {source:'/:path*',headers:[
+      {key:'X-Content-Type-Options',value:'nosniff'},
+      {key:'Referrer-Policy',value:'strict-origin-when-cross-origin'},
+      {key:'X-Frame-Options',value:'SAMEORIGIN'},
+      {key:'Permissions-Policy',value:'camera=(), microphone=(), geolocation=()'}
+    ]},
+    {source:'/sw.js',headers:[
+      {key:'Cache-Control',value:'no-cache, no-store, must-revalidate'},
+      {key:'Service-Worker-Allowed',value:'/'}
+    ]}
+  ]; }
+};
+""")
     output.writestr('.shardcloud', '\n'.join([
-        'DISPLAY_NAME=navalha-gestao',
-        'DESCRIPTION=Demonstracao ficticia de agenda e gestao para barbearias',
+        'DISPLAY_NAME=elares-beauty',
+        'DESCRIPTION=Elares Beauty - demonstracao ficticia para saloes de beleza',
         'LANGUAGE=node', 'MAIN=start.js', 'MEMORY=512', 'VERSION=recommended',
-        'SUBDOMAIN=navalha-gestao', 'CUSTOM_COMMAND=node start.js', ''
+        'SUBDOMAIN=elares-beauty', 'CUSTOM_COMMAND=node start.js', ''
     ]))
 with ZipFile(target) as archive:
     assert archive.testzip() is None
