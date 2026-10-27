@@ -403,3 +403,20 @@ html[data-theme="dark"] .theme-control {
 .online-dot {
   background: #16a34a;
 }
+
+/* Superfícies escuras mantêm seu próprio contraste também no tema claro. */
+.sidebar {
+  --ink: #faf9fc;
+  --muted: #c4b5d5;
+}
+.sidebar nav .count {
+  background: #493060;
+  color: #f3eeff;
+}
+.link-card .light-button {
+  background: #f3eeff;
+  color: #4c1d95;
+}
+.link-card .light-button:hover {
+  background: #e9ddff;
+}

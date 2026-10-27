@@ -390,7 +390,7 @@ export default function Dashboard() {
     return (
       <main className="loading">
         <Scissors />
-        <p>{error || "Preparando suo salão…"}</p>
+        <p>{error || "Preparando seu salão…"}</p>
         {error && <button onClick={load}>Tentar novamente</button>}
       </main>
     );
