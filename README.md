@@ -1,3 +1,9 @@
+<p align="center"><img src=".github/assets/banner.svg" alt="Elares Beauty" width="100%" /></p>
+
+<p align="center"><a href="https://github.com/T-Lucas43">Perfil</a> · <a href="https://github.com/T-Lucas43?tab=repositories">Mais projetos</a> · <a href="https://www.linkedin.com/in/tarcisio-lucas-io">LinkedIn</a></p>
+
+---
+
 # Elares Beauty
 
 Sistema de gestão para salões da família Elares. Adaptação independente da base Elares Barber, preservando histórico e autoria de Tarcisio Lucas. Referência da base: commit fe89e5b. A documentação herdada permanece em docs/README_BASE_BARBER.md e demais documentos anteriores; suas referências de publicação dizem respeito ao Barber, não comprovam publicação ou validação do Beauty.
